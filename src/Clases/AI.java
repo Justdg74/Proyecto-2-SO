@@ -129,26 +129,36 @@ public class AI extends Thread {
         int ventaja_p1=0;
         int ventaja_p2=0;
                 
-        if(p1.getAgilidad()>p2.getAgilidad()){
-            ventaja_p1++;
-        }else {
+         if(p1.getAgilidad()>p2.getAgilidad()) {
+            ventaja_p1++;}
+        else if (p1.getAgilidad()==p2.getAgilidad()){
+            }
+        else if (p1.getAgilidad()<p2.getAgilidad()){
             ventaja_p2++;
         }
-                
-        if(p1.getFuerza()>=p2.getFuerza()){
-            ventaja_p1++;
-        }else {
+         
+        if(p1.getFuerza()>p2.getFuerza()) {
+            ventaja_p1++;}
+        else if (p1.getFuerza()==p2.getFuerza()){
+            }
+        else if (p1.getFuerza()<p2.getFuerza()){
             ventaja_p2++;
         }
                 
         if(p1.getHabilidad()>p2.getHabilidad()) {
-            ventaja_p1++;
-        }else {
+            ventaja_p1++;}
+        else if (p1.getHabilidad()==p2.getHabilidad()){
+            }
+        else if (p1.getHabilidad()<p2.getHabilidad()){
             ventaja_p2++;
         }
-        if(p1.getHp()>=p2.getHp()) {
-            ventaja_p1++;
-        }else {
+        
+        
+         if(p1.getHp()>p2.getHp()) {
+            ventaja_p1++;}
+        else if (p1.getHp()==p2.getHp()){
+            }
+        else if (p1.getHp()<p2.getHp()){
             ventaja_p2++;
         }
         
@@ -163,7 +173,7 @@ public class AI extends Thread {
             return p1;
         }else{
             System.out.println(p2.getName()+" es el ganador");
-            interfaz.getWinners_Table().append("SW-"+p2.getId()+"-"+p1.getName()+'\n');
+            interfaz.getWinners_Table().append("SW-"+p2.getId()+"-"+p2.getName()+'\n');
             interfaz.getCharacter_SW().setIcon(new ImageIcon(getClass().getResource("/ImagesAux/Cargando.png"))); // Se quita la foto del Perdedor
             this.SwWins ++;
             interfaz.getSW_Wins_Count().setText(Integer.toString(this.SwWins));

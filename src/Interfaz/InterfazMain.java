@@ -434,7 +434,7 @@ public class InterfazMain extends javax.swing.JFrame {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(140, 350, 90, 360);
 
-        IS_Status.setBackground(new java.awt.Color(0, 0, 0, 95));
+        IS_Status.setBackground(new java.awt.Color(0, 0, 51));
 
         IA_Status.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         IA_Status.setForeground(new java.awt.Color(255, 255, 255));
@@ -539,7 +539,7 @@ public class InterfazMain extends javax.swing.JFrame {
         getContentPane().add(jPanel5);
         jPanel5.setBounds(340, 350, 100, 360);
 
-        jPanel6.setBackground(new java.awt.Color(0, 0, 0, 95));
+        jPanel6.setBackground(new java.awt.Color(0, 0, 51));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -613,23 +613,27 @@ public class InterfazMain extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("AJUSTE DE VELOCIDAD");
 
-        Velocidad.setMajorTickSpacing(9);
-        Velocidad.setMaximum(20);
+        Velocidad.setMajorTickSpacing(10);
         Velocidad.setMinimum(1);
-        Velocidad.setMinorTickSpacing(1);
-        Velocidad.setPaintLabels(true);
+        Velocidad.setMinorTickSpacing(10);
         Velocidad.setPaintTicks(true);
-        Velocidad.setValue(10);
+        Velocidad.setToolTipText("");
+        Velocidad.setValue(50);
+        Velocidad.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                VelocidadStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addComponent(Velocidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -637,7 +641,7 @@ public class InterfazMain extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Velocidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel8);
@@ -845,7 +849,7 @@ public class InterfazMain extends javax.swing.JFrame {
         getContentPane().add(jPanel14);
         jPanel14.setBounds(1070, 350, 100, 360);
 
-        y.setBackground(new java.awt.Color(0, 0, 0, 95));
+        y.setBackground(new java.awt.Color(51, 0, 51));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -945,7 +949,7 @@ public class InterfazMain extends javax.swing.JFrame {
         getContentPane().add(y);
         y.setBounds(790, 140, 170, 200);
 
-        jPanel16.setBackground(new java.awt.Color(0, 0, 0, 95));
+        jPanel16.setBackground(new java.awt.Color(51, 0, 51));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -976,6 +980,7 @@ public class InterfazMain extends javax.swing.JFrame {
         Habilidad_SW.setForeground(new java.awt.Color(255, 255, 255));
         Habilidad_SW.setText("-");
 
+        Fuerza_SW.setBackground(new java.awt.Color(255, 255, 204));
         Fuerza_SW.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Fuerza_SW.setForeground(new java.awt.Color(255, 255, 255));
         Fuerza_SW.setText("-");
@@ -1151,6 +1156,13 @@ public class InterfazMain extends javax.swing.JFrame {
         }      
                
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void VelocidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_VelocidadStateChanged
+        // TODO add your handling code here:
+        
+        admin.ai.setWaitingTime(((int)this.Velocidad.getValue())*1000);
+        System.out.println("indice: "+(int)this.Velocidad.getValue());
+    }//GEN-LAST:event_VelocidadStateChanged
 
     /**
      * @param args the command line arguments

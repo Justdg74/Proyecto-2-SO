@@ -65,58 +65,58 @@ public class Character {
             this.nivel=3;
         }
         
-       if (this.object.compareTo("El poder")==0) {
+       if (this.object.compareTo("Sable De Luz")==0) {
            this.habilidad+=2;
            this.hp+=3;
        }
-       else if(this.object.compareTo("Guante Supremo")==0){
+       else if(this.object.compareTo("Phaser")==0){
            this.fuerza+=3;
            this.habilidad+=2;
            this.agilidad++;
        }
        
-       else if(this.object.compareTo("Boomerang")==0) {
+       else if(this.object.compareTo("Blaster")==0) {
            this.habilidad+=3;
            this.agilidad+=2;
            this.fuerza++;
        }
        
-       else if(this.object.compareTo("Planeador")==0){
+       else if(this.object.compareTo("Disruptor")==0){
            this.agilidad+=4;
            this.hp+=2;
            this.habilidad+=2;
        }
        
-       else if(this.object.compareTo("Armadura")==0){
+       else if(this.object.compareTo("Vibrocuchillo")==0){
            this.fuerza+=2;
            this.hp+=2;
            //this.habilidad++;
        }
        
-       else if(this.object.compareTo("Abanicos")==0){
+       else if(this.object.compareTo("Dardo de Tritonio")==0){
            this.agilidad+=3;
            this.fuerza+=2;
           // this.habilidad+=2;
        }
        
-       else if(this.object.compareTo("Gorra de Camionero")==0){
+       else if(this.object.compareTo("Bioarma")==0){
            this.hp+=2;
            this.fuerza+=4;
            this.agilidad+=3;
        }
-       else if(this.object.compareTo("Cafe")==0){
+       else if(this.object.compareTo("Escudo")==0){
            this.agilidad+=4;
            this.habilidad+=2;
            this.hp+=2;
        }
        
-       else if(this.object.compareTo("Sandwich de la Muerte")==0){
+       else if(this.object.compareTo("Baston")==0){
            this.fuerza+=4;
            this.habilidad+=3;
            this.hp++;
        }
        
-       else if(this.object.compareTo("Collar de Katara")==0){
+       else if(this.object.compareTo("Laser")==0){
            this.hp+=4;
            this.agilidad+=2;
        }

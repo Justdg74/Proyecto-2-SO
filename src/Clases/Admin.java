@@ -46,7 +46,7 @@ public class Admin extends Thread {
         while(true){
             try{
                 checkEmpty();
-                mutex1.acquire(); //Wait del semáforo de Cartoon Network para conseguir el personaje
+                mutex1.acquire(); //Wait del semáforo de Star Trek para conseguir el personaje
                 if(GVariables.getSStarTrek().getPrioridad1().getSize() > 0){                                 //Si hay algo en la cola de prioridad 1 desencola
                     this.ai.setP1(GVariables.getSStarTrek().getPrioridad1().desencolar().getElement());
                     JTextArea text = new JTextArea(49,49);
@@ -63,12 +63,12 @@ public class Admin extends Thread {
                     text.setText(GVariables.getSStarTrek().getPrioridad3().imprimir());
                     interfaz.getPrioridad3_ST().setViewportView(text);
                 }
-                System.out.println("Se escogio uno de CN");
-                mutex1.release(); //Se cierra la zona crítica de Cartoon Network
+                System.out.println("Se escogio uno de ST");
+                mutex1.release(); //Se cierra la zona crítica de Start Trek
                 
-                changeStatsCn(); //Se cambian las Stats al personaje actual de Cartoon Network
+                changeStatsST(); //Se cambian las Stats al personaje actual de Star Trek
 
-                mutex2.acquire(); //Wait del Semáforo de Nickelodeon para conseguir el personaje y se repite el procedimiento por colas
+                mutex2.acquire(); //Wait del Semáforo de Star Wars para conseguir el personaje y se repite el procedimiento por colas
 
                 if(GVariables.getSStarWars().getPrioridad1().getSize() > 0){                                 //Si hay algo en la cola de prioridad 1 desencola
                     this.ai.setP2(GVariables.getSStarWars().getPrioridad1().desencolar().getElement());
@@ -86,10 +86,10 @@ public class Admin extends Thread {
                     text.setText(GVariables.getSStarWars().getPrioridad3().imprimir());
                     interfaz.getPrioridad3_SW().setViewportView(text);
                 }
-                System.out.println("Se escogio uno de Nick");
-                mutex2.release(); //Se cierra la zona crítica de Nickelodeon
+                System.out.println("Se escogio uno de Wars");
+                mutex2.release(); //Se cierra la zona crítica de Star wars
                 
-                changeStatsNick(); //Se cambian las Stats al personaje actual de Nick
+                changeStatsSW(); //Se cambian las Stats al personaje actual de SW
             
             changeIcons();    
                 
@@ -104,7 +104,7 @@ public class Admin extends Thread {
                 int chance= (int) (Math.random()*100);
                 mutex1.acquire();
                 if(chance>= 0 && chance <= 40){
-                    System.out.println("Un personaje de CN salió de la cola de refuerzos");
+                    System.out.println("Un personaje de ST salió de la cola de refuerzos");
                     Nodo character = GVariables.getSStarTrek().getRefuerzo().desencolar();
                     GVariables.getSStarTrek().getPrioridad1().encolar(character.getElement());
                     JTextArea text1 = new JTextArea(49,49);
@@ -115,7 +115,7 @@ public class Admin extends Thread {
                     interfaz.getPrioridad1_ST().setViewportView(text2);
                     
                 }else{
-                    System.out.println("Un personaje de CN se mandó al final de la cola de refuerzos");
+                    System.out.println("Un personaje de ST se mandó al final de la cola de refuerzos");
                     Nodo character = GVariables.getSStarTrek().getRefuerzo().desencolar();
                     GVariables.getSStarTrek().getRefuerzo().encolar(character.getElement());
                     JTextArea text = new JTextArea(49,49);
@@ -129,7 +129,7 @@ public class Admin extends Thread {
                 int chance= (int) (Math.random()*100);
                 mutex2.acquire();
                 if(chance>= 0 && chance <= 40){
-                    System.out.println("Un personaje de CN salió de la cola de refuerzos");
+                    System.out.println("Un personaje de SW salió de la cola de refuerzos");
                     Nodo character = GVariables.getSStarWars().getRefuerzo().desencolar();
                     GVariables.getSStarWars().getPrioridad1().encolar(character.getElement());
                     JTextArea text1 = new JTextArea(49,49);
@@ -139,7 +139,7 @@ public class Admin extends Thread {
                     interfaz.getRefuerzos_SW().setViewportView(text1);
                     interfaz.getPrioridad1_SW().setViewportView(text2);
                 }else{
-                    System.out.println("Un personaje de CN se mandó al final de la cola de refuerzos");
+                    System.out.println("Un personaje de SW se mandó al final de la cola de refuerzos");
                     Nodo character = GVariables.getSStarWars().getRefuerzo().desencolar();
                     GVariables.getSStarWars().getRefuerzo().encolar(character.getElement());
                     JTextArea text = new JTextArea(49,49);
@@ -168,13 +168,13 @@ public class Admin extends Thread {
     }
     
     public void AgregarPersonaje(){        
-        //crear un personaje de cartoon network
+        //crear un personaje de star trek
         int numP=(int) (Math.random()*19);
         int numO=(int) (Math.random()*9);
         GVariables.getSStarTrek().GenerateCharacter(GVariables.getStarTrek()[numP], GVariables.getObjetos()[numO],IdCh);
         IdCh++;
         
-        //crear un personaje de nick
+        //crear un personaje de star wars
         numP=(int) (Math.random()*19);
         numO=(int) (Math.random()*9);
         GVariables.getSStarWars().GenerateCharacter(GVariables.getStarWars()[numP], GVariables.getObjetos()[numO],IdCh);
@@ -183,20 +183,20 @@ public class Admin extends Thread {
     }
     
     public void Actualizar_colas() {
-           // System.out.println("contador 2 de cn");
+           // System.out.println("contador 2 de star trek");
             GVariables.getSStarTrek().getPrioridad2().subir_contador();
-           // System.out.println("contador 3 de cn");
+           // System.out.println("contador 3 de start trek");
             GVariables.getSStarTrek().getPrioridad3().subir_contador();
             
-           // System.out.println("contador 2 de nick");
+           // System.out.println("contador 2 de star wars");
             GVariables.getSStarWars().getPrioridad2().subir_contador();
-           // System.out.println("contador 3 de nick");
+           // System.out.println("contador 3 de star wars");
             GVariables.getSStarWars().getPrioridad3().subir_contador();
             
             //ahora veo como encolo y desencolo las que tienen 8 como contador
             Nodo borrado;
-            //para prioridad 2 de nick
-                System.out.println("personajes en cola de prioridad 2 de nick en admin");
+            //para prioridad 2 de SW
+                System.out.println("personajes en cola de prioridad 2 de SW en admin");
             for (Nodo aux=GVariables.getSStarWars().getPrioridad2().getFirst(); aux!=null; aux=aux.getNext()) {
                 if(aux.getElement().getCounter()==8) {//si es de 8 debe subir la prioridad
                    // System.out.println("contador: "+aux.getElement().getCounter()+" personaje "+aux.getElement().getName()+" id "+aux.getElement().getId());
@@ -232,7 +232,7 @@ public class Admin extends Thread {
             interfaz.getPrioridad2_SW().setViewportView(text2);
                     
             
-            //para prioridad 3 de nick
+            //para prioridad 3 de star wars
             for (Nodo aux=GVariables.getSStarWars().getPrioridad3().getFirst(); aux!=null; aux=aux.getNext()) {
                 if(aux.getElement().getCounter()==8) {//si es de 8 debe subir la prioridad
                    // System.out.println("contador: "+aux.getElement().getCounter()+" personaje "+aux.getElement().getName()+" id "+aux.getElement().getId());
@@ -267,8 +267,8 @@ public class Admin extends Thread {
             interfaz.getPrioridad2_SW().setViewportView(text3);
             interfaz.getPrioridad3_SW().setViewportView(text4);
                         
-            //para prioridad 2 de cartoon
-                System.out.println("personajes en cola de prioridad 2 de cartoon en admin");
+            //para prioridad 2 de ST
+                System.out.println("personajes en cola de prioridad 2 de cartoon en ST");
             for (Nodo aux=GVariables.getSStarTrek().getPrioridad2().getFirst(); aux!=null; aux=aux.getNext()) {
                 if(aux.getElement().getCounter()==8) {//si es de 8 debe subir la prioridad
                    // System.out.println("contador: "+aux.getElement().getCounter()+" personaje "+aux.getElement().getName()+" id "+aux.getElement().getId());
@@ -287,11 +287,7 @@ public class Admin extends Thread {
                     //System.out.println("nodo borrado "+borrado.getElement().getId());
                     }
                     GVariables.getSStarTrek().getPrioridad1().encolar(aux.getElement());//lo meto a la de prioridad 1
-//                    System.out.println("nueva prioridad 1");
-//            Global.getCN().getPrioridad1().imprimir();
-//            System.out.println("nueva prioridad 2");
-//            Global.getCN().getPrioridad2().imprimir();
-                    //System.out.println("AAAAAAA "+aux.getNext());
+//                
                 }
         
             }
@@ -306,27 +302,22 @@ public class Admin extends Thread {
             //para prioridad 3 de cartoon
             for (Nodo aux=GVariables.getSStarTrek().getPrioridad3().getFirst(); aux!=null; aux=aux.getNext()) {
                 if(aux.getElement().getCounter()==8) {//si es de 8 debe subir la prioridad
-                   // System.out.println("contador: "+aux.getElement().getCounter()+" personaje "+aux.getElement().getName()+" id "+aux.getElement().getId());
+                   
                     aux.getElement().setNivel(aux.getElement().getNivel()+1);
                     aux.getElement().setCounter(0);
                     int indice=GVariables.getSStarTrek().getPrioridad3().Buscar(aux);//indice del nodo a borrar
-                   // System.out.println("indice: "+indice);
+                   
                     if(indice==0) {
                         
                         borrado=GVariables.getSStarTrek().getPrioridad3().desencolar();
-                        //System.out.println("pipipi "+borrado.getNext());
+                        
                         
                     }
                     else {
                         borrado=GVariables.getSStarTrek().getPrioridad3().borrar(indice);//lo quito de la cola
-                    //System.out.println("nodo borrado "+borrado.getElement().getId());
+                    
                     }
-                    GVariables.getSStarTrek().getPrioridad2().encolar(aux.getElement());//lo meto a la de prioridad 1
-//                    System.out.println("nueva prioridad 2");
-//            Global.getCN().getPrioridad2().imprimir();
-//            System.out.println("nueva prioridad 3");
-//            Global.getCN().getPrioridad3().imprimir();
-                    //System.out.println("AAAAAAA "+aux.getNext());
+                    GVariables.getSStarTrek().getPrioridad2().encolar(aux.getElement());//lo meto a la de prioridad 1                   
                 }
         
             }
@@ -369,7 +360,7 @@ public class Admin extends Thread {
         System.out.println("/Images.StarWars/"+this.ai.getP2().getName()+".png");
     }
     
-    public void changeStatsCn(){
+    public void changeStatsST(){
         interfaz.getObjeto_ST().setText(this.ai.getP1().getObject()); 
         interfaz.getHabilidad_ST().setText(Integer.toString(this.ai.getP1().getHabilidad()));
         interfaz.getFuerza_ST().setText(Integer.toString(this.ai.getP1().getFuerza()));
@@ -377,7 +368,7 @@ public class Admin extends Thread {
         interfaz.getAgilidad_ST().setText(Integer.toString(this.ai.getP1().getAgilidad()));
     }
     
-    public void changeStatsNick(){
+    public void changeStatsSW(){
         interfaz.getObjeto_SW().setText(this.ai.getP2().getObject());
         interfaz.getHabilidad_SW().setText(Integer.toString(this.ai.getP2().getHabilidad()));
         interfaz.getFuerza_SW().setText(Integer.toString(this.ai.getP2().getFuerza()));
