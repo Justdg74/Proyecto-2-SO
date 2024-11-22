@@ -24,8 +24,8 @@ import javax.swing.ImageIcon;
 public class Admin extends Thread {
     private int ciclo; //cada 2 ciclos se revisa la probabilidad de que se cree uno nuevo
     public AI ai; //la IA con el que el Admin va a estar trabajando
-    private Semaphore mutex1; //Semaforo de Cn
-    private Semaphore mutex2; //Semaforo de Nickelodeon
+    private Semaphore mutex1; //Semaforo de ST
+    private Semaphore mutex2; //Semaforo de  SW
     private int IdCh=0;
     public InterfazMain interfaz;
     
@@ -215,11 +215,7 @@ public class Admin extends Thread {
                     //System.out.println("nodo borrado "+borrado.getElement().getId());
                     }
                     GVariables.getSStarWars().getPrioridad1().encolar(aux.getElement());//lo meto a la de prioridad 1
-//                    System.out.println("nueva prioridad 1");
-//            Global.getNick().getPrioridad1().imprimir();
-//            System.out.println("nueva prioridad 2");
-//            Global.getNick().getPrioridad2().imprimir();
-                    //System.out.println("AAAAAAA "+aux.getNext());
+//                
                 }
         
             }
@@ -239,7 +235,7 @@ public class Admin extends Thread {
                     aux.getElement().setNivel(aux.getElement().getNivel()+1);
                     aux.getElement().setCounter(0);
                     int indice=GVariables.getSStarWars().getPrioridad3().Buscar(aux);//indice del nodo a borrar
-                   // System.out.println("indice: "+indice);
+                    System.out.println("indice: "+indice);
                     if(indice==0) {
                         
                         borrado=GVariables.getSStarWars().getPrioridad3().desencolar();
@@ -251,11 +247,7 @@ public class Admin extends Thread {
                     //System.out.println("nodo borrado "+borrado.getElement().getId());
                     }
                     GVariables.getSStarWars().getPrioridad2().encolar(aux.getElement());//lo meto a la de prioridad 1
-//                    System.out.println("nueva prioridad 2");
-//            Global.getNick().getPrioridad2().imprimir();
-//            System.out.println("nueva prioridad 3");
-//            Global.getNick().getPrioridad3().imprimir();
-                    //System.out.println("AAAAAAA "+aux.getNext());
+//                );
                 }
         
             }
@@ -268,14 +260,14 @@ public class Admin extends Thread {
             interfaz.getPrioridad3_SW().setViewportView(text4);
                         
             //para prioridad 2 de ST
-                System.out.println("personajes en cola de prioridad 2 de cartoon en ST");
+                System.out.println("personajes en cola de prioridad 2 de  ST");
             for (Nodo aux=GVariables.getSStarTrek().getPrioridad2().getFirst(); aux!=null; aux=aux.getNext()) {
                 if(aux.getElement().getCounter()==8) {//si es de 8 debe subir la prioridad
-                   // System.out.println("contador: "+aux.getElement().getCounter()+" personaje "+aux.getElement().getName()+" id "+aux.getElement().getId());
+                    System.out.println("contador: "+aux.getElement().getCounter()+" personaje "+aux.getElement().getName()+" id "+aux.getElement().getId());
                     aux.getElement().setNivel(aux.getElement().getNivel()+1);
                     aux.getElement().setCounter(0);
                     int indice=GVariables.getSStarTrek().getPrioridad2().Buscar(aux);//indice del nodo a borrar
-                   // System.out.println("indice: "+indice);
+                    System.out.println("indice: "+indice);
                     if(indice==0) {
                         
                         borrado=GVariables.getSStarTrek().getPrioridad2().desencolar();
@@ -299,7 +291,7 @@ public class Admin extends Thread {
             interfaz.getPrioridad1_ST().setViewportView(text5);
             interfaz.getPrioridad2_ST().setViewportView(text6);
             
-            //para prioridad 3 de cartoon
+            //para prioridad 3 de ST
             for (Nodo aux=GVariables.getSStarTrek().getPrioridad3().getFirst(); aux!=null; aux=aux.getNext()) {
                 if(aux.getElement().getCounter()==8) {//si es de 8 debe subir la prioridad
                    
@@ -324,8 +316,8 @@ public class Admin extends Thread {
             
             JTextArea text7 = new JTextArea(49,49);
             JTextArea text8 = new JTextArea(49,49);
-            text3.setText(GVariables.getSStarTrek().getPrioridad1().imprimir());
-            text4.setText(GVariables.getSStarTrek().getPrioridad2().imprimir());
+            text7.setText(GVariables.getSStarTrek().getPrioridad1().imprimir());
+            text8.setText(GVariables.getSStarTrek().getPrioridad2().imprimir());
             interfaz.getPrioridad1_ST().setViewportView(text7);
             interfaz.getPrioridad2_ST().setViewportView(text8);
     

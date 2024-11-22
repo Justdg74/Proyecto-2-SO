@@ -613,12 +613,12 @@ public class InterfazMain extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("AJUSTE DE VELOCIDAD");
 
-        Velocidad.setMajorTickSpacing(10);
+        Velocidad.setMajorTickSpacing(1);
+        Velocidad.setMaximum(20);
         Velocidad.setMinimum(1);
         Velocidad.setMinorTickSpacing(10);
         Velocidad.setPaintTicks(true);
         Velocidad.setToolTipText("");
-        Velocidad.setValue(50);
         Velocidad.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 VelocidadStateChanged(evt);
@@ -647,7 +647,7 @@ public class InterfazMain extends javax.swing.JFrame {
         getContentPane().add(jPanel8);
         jPanel8.setBounds(480, 540, 230, 80);
 
-        x.setBackground(new java.awt.Color(0, 0, 0, 95));
+        x.setBackground(new java.awt.Color(0, 0, 51));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -681,7 +681,7 @@ public class InterfazMain extends javax.swing.JFrame {
         getContentPane().add(x);
         x.setBounds(620, 30, 180, 40);
 
-        jPanel10.setBackground(new java.awt.Color(0, 0, 0, 95));
+        jPanel10.setBackground(new java.awt.Color(0, 0, 51));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -1129,23 +1129,6 @@ public class InterfazMain extends javax.swing.JFrame {
             
 
         
-//            System.out.println("Prioridad 1 Cartoon");
-//            Global.getCN().getPrioridad1().imprimir();
-//
-//            System.out.println("Prioridad 2 Cartoon");
-//            Global.getCN().getPrioridad2().imprimir();
-//
-//            System.out.println("Prioridad 3 Cartoon");
-//            Global.getCN().getPrioridad3().imprimir();
-//
-//            System.out.println("Prioridad 1 Nick");
-//            Global.getNick().getPrioridad1().imprimir();
-//
-//            System.out.println("Prioridad 2 Nick");
-//            Global.getNick().getPrioridad2().imprimir();
-//
-//            System.out.println("Prioridad 3 Nick");
-//            Global.getNick().getPrioridad3().imprimir();
             
             this.Velocidad.setValue(10);
             admin.ai.setWaitingTime(((int)this.Velocidad.getValue())*1000);
